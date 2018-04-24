@@ -2,7 +2,7 @@ from flask import render_template, request
 from sqlalchemy import desc
 from flask_cors import cross_origin
 
-from flasqus import app, db
+from flasqus import app, db, csrf
 from .forms import CommentForm
 from .models import Comment
 
@@ -13,6 +13,7 @@ def index():
 
 @app.route('/new_comment', methods=['GET', 'POST'])
 @cross_origin()
+@csrf.exempt()
 def new_comment():
     form = CommentForm()
     if form.validate_on_submit():
