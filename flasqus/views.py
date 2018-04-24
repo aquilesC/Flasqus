@@ -15,7 +15,7 @@ def index():
 @cross_origin()
 @csrf.exempt
 def new_comment():
-    form = CommentForm()
+    form = CommentForm(csrf_enabled=False)
     if form.validate_on_submit():
         comment = Comment(author_name=form.author_name.data,
                           author_email=form.author_email.data,
