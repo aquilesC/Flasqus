@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if comments %}
+    {% for comment in comments %}
+        <img src="{{ comment.gravatar }}" />
+    {{ comment.author_name }} - {{ comment.author_email }}<br>
+    <p>{{ comment.message }}</p>
+    {% endfor %}
+{% else %}
+    No Comments Yet
+{% endif %}
+{% endblock %}

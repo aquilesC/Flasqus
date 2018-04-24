@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+<div id="comments"></div>
+<div id="new_comment"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+    $('#comments').load('/view_comments/1');
+    $('#new_comment').load('/new_comment');
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        // click on button submit
+        $("#submit").click(function(){
+            console.log($('input#author_name').val());
+            console.log($('#MessageForm').serialize());
+            // send ajax
+            $.ajax({
+                url: "/new_comment", // url where to submit the request
+                type : "POST", // type of action POST || GET
+                data : $('#MessageForm').serialize(), // post data || get data
+                success : function(result) {
+                    $('#comments').html(result);
+                    // you can see the result from the console
+                    // tab of the developer tools
+                    console.log('Success!');
+                }
+            });
+            return false;
+        });
+    });
+
+</script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<div id="qa_captcha_div_1">
+    <div class="g-recaptcha" data-sitekey="6LfbGlUUAAAAAIh6f6E_DNwUy3BZ3E-W2SafEs2k"></div>
+</div>
+    </div>
+</body>
+</html>

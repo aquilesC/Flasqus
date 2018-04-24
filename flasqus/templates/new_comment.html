@@ -1,0 +1,25 @@
+
+    <form name="new_message" action="" id="MessageForm">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.author_name.label }}<br>
+            {{ form.author_name(size=32) }}
+            {% for error in form.author_name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <p>
+            {{ form.author_email.label }}<br>
+            {{ form.author_email(size=32) }}
+            {% for error in form.author_email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.message }}
+        </p>
+        <p>{{ form.sign_up_newsletter() }} {{ form.sign_up_newsletter.label }}</p>
+    {#    <p>{{ form.submit() }}</p>#}
+        {{ form.recaptcha }}
+    </form>
+
