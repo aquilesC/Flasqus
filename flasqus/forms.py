@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import StringField, BooleanField, TextAreaField, SubmitField
+from wtforms import StringField, BooleanField, TextAreaField, SubmitField, HiddenField
 from wtforms.validators import InputRequired, Length, Email
 
 
@@ -10,6 +10,7 @@ class CommentForm(FlaskForm):
     sign_up_newsletter = BooleanField('Sign Up to Newsletter')
     recaptcha = RecaptchaField()
     submit = SubmitField('Send')
+    thread_id = HiddenField()
 
     class Meta:
         csrf = False

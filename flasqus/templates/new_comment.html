@@ -1,5 +1,5 @@
 <div id="TheForm">
-    <form name="new_message" id="MessageForm" action="" method="post">
+    <form name="new_message" id="MessageForm">
         {{ form.hidden_tag() }}
         <div class="form-group">
             {{ form.author_name.label(class="control-label") }}
@@ -15,7 +15,7 @@
         <div class="form-group">
             {{ form.author_email.label(class="control-label") }}
             {% if form.author_email.errors %}
-                {{ form.author_name(class="form-control is-invalid", size=32) }}
+                {{ form.author_email(class="form-control is-invalid", size=32) }}
                 {% for error in form.author_email.errors %}
                     <div class="invalid-feedback">{{ error }}</div>
                 {% endfor %}
@@ -40,9 +40,12 @@
     </form>
 </div>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function(){
         $('form').submit(function (e) {
-            var url = "http://aquic.pythonanywhere.com/new_comment"; // send the form data here.
+            $('#thread_id').val(this_page_id);
+            console.log(this_page_id);
+            var url = "http://localhost:5000/new_comment"; // send the form data here.
+            console.log($('#MessageForm').serialize());
             $.ajax({
                 type: "POST",
                 url: url,
@@ -53,5 +56,6 @@
             });
             e.preventDefault(); // block the traditional submission of the form.
         });
+        return false;
     });
 </script>

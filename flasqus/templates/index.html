@@ -5,17 +5,31 @@
     <title>Title</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/base.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="container">
 <div id="new_comment"></div>
 <div id="comments"></div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script>
-    $('#comments').load('/view_comments/1');
-    $('#new_comment').load('/new_comment');
-</script>
-
 </div>
+<script>
+    var this_page_id = 'test';
+    $(document).ready(function() {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:5000/view_comments",
+            data: JSON.stringify({
+                id: this_page_id,
+            }),
+            contentType: "application/json",
+            success: function (data) {
+                $('#comments').html(data);
+            },
+        });
+        $('#new_comment').load("http://localhost:5000/new_comment");
+        return false;
+    });
+
+</script>
 </body>
 </html>
