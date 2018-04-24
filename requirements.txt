@@ -2,13 +2,15 @@ alembic==0.9.9
 click==6.7
 Flask==0.12.2
 Flask-Cors==3.0.3
-Flask-Migrate==2.1.1
+Flask-Markdown==0.3
+Flask-Moment==0.6.0
 Flask-SQLAlchemy==2.3.2
 Flask-WTF==0.14.2
--e git+git@github.com:aquilesC/Flasqus.git@62fe1cd12ed683cfd88616ecf98d09cb602a3026#egg=Flasqus
+-e git+git@github.com:aquilesC/Flasqus.git@e70ae61d9e0f9978e45bb4240a694656340b484e#egg=Flasqus
 itsdangerous==0.24
 Jinja2==2.10
 Mako==1.0.7
+Markdown==2.6.11
 MarkupSafe==1.0
 python-dateutil==2.7.2
 python-editor==1.0.3
