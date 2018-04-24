@@ -13,7 +13,7 @@ def index():
 
 @app.route('/new_comment', methods=['GET', 'POST'])
 @cross_origin()
-@csrf.exempt()
+@csrf.exempt
 def new_comment():
     form = CommentForm()
     if form.validate_on_submit():
