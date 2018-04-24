@@ -12,7 +12,7 @@ def index():
 
 
 @app.route('/new_comment', methods=['GET', 'POST'])
-@cross_origin(origin='*')
+@cross_origin(origin='*', headers=['Content-Type','Authorization'])
 def new_comment():
     form = CommentForm()
     if form.validate_on_submit():
