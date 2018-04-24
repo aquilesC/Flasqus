@@ -22,3 +22,14 @@
         <p><input id="submit" name="submit" type="button" value="Send" onclick="sendform()"/></p>
 </form>
 
+<script type="text/javascript">
+    var csrf_token = "{{ form.csrf_token }}";
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrf_token);
+            }
+        }
+    });
+</script>
