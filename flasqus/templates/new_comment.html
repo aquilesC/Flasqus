@@ -44,7 +44,7 @@
         $('form').submit(function (e) {
             $('#thread_id').val(this_page_id);
             console.log(this_page_id);
-            var url = "http://localhost:5000/new_comment"; // send the form data here.
+            var url = "http://aquic.pythonanywhere.com/new_comment"; // send the form data here.
             console.log($('#MessageForm').serialize());
             $.ajax({
                 type: "POST",
