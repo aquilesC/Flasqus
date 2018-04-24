@@ -12,28 +12,28 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
     $('#comments').load('http://aquic.pythonanywhere.com/view_comments/1');
+    console.log('Loaded comments');
     $('#new_comment').load('http://aquic.pythonanywhere.com/new_comment');
 </script>
 <script>
-    $(document).ready(function(){
-        // click on button submit
-        $("#submit").click(function(){
-            console.log($('input#author_name').val());
-            console.log($('#MessageForm').serialize());
-            // send ajax
-            $.ajax({
-                url: "http://aquic.pythonanywhere.com/new_comment", // url where to submit the request
-                type : "POST", // type of action POST || GET
-                data : $('#MessageForm').serialize(), // post data || get data
-                success : function(result) {
-                    $('#new_comment').html(result);
-                    console.log('Success!');
-                }
-            });
-            return false;
+function sendform() {
+    $('#submit').on('click', function () {
+        console.log('Clicking button');
+        console.log($('input#author_name').val());
+        console.log($('#MessageForm').serialize());
+        // send ajax
+        $.ajax({
+            url: "http://aquic.pythonanywhere.com/new_comment", // url where to submit the request
+            type: "POST", // type of action POST || GET
+            data: $('#MessageForm').serialize(), // post data || get data
+            success: function (result) {
+                $('#new_comment').html(result);
+                console.log('Success!');
+            }
         });
+        return false;
     });
-
+};
 </script>
 </div>
 </body>

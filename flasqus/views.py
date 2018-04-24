@@ -23,7 +23,6 @@ def new_comment():
 
         db.session.add(comment)
         db.session.commit()
-        comments = Comment.query.filter_by(thread_id=1).order_by(desc(Comment.creation_date))
         return 'Message received', 200
     return render_template('new_comment.html', form=form)
 
