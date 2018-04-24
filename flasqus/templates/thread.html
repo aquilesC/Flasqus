@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% if comments %}
+{% if comments|length > 0 %}
     {% for comment in comments %}
         <img src="{{ comment.gravatar }}" />
     {{ comment.author_name }} - {{ comment.author_email }}<br>
