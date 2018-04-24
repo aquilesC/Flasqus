@@ -9,3 +9,4 @@ class CommentForm(FlaskForm):
     message = TextAreaField('Message', validators=[InputRequired()])
     sign_up_newsletter = BooleanField('Sign Up to Newsletter')
     recaptcha = RecaptchaField()
+    submit = SubmitField('Send')
