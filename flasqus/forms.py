@@ -8,5 +8,8 @@ class CommentForm(FlaskForm):
     author_email = StringField('Email', validators=[InputRequired(), Email()])
     message = TextAreaField('Message', validators=[InputRequired()])
     sign_up_newsletter = BooleanField('Sign Up to Newsletter')
-    # recaptcha = RecaptchaField()
+    recaptcha = RecaptchaField()
     submit = SubmitField('Send')
+
+    class Meta:
+        csrf = False

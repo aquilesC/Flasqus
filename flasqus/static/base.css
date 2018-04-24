@@ -1,0 +1,22 @@
+.comments ul{
+    list-style-type: none;
+}
+
+.comments li{
+    padding-top: 1rem;
+    border-bottom: gray;
+    border-width: 0.1px;
+    border-style: solid;
+}
+
+.comment-body{
+    /*margin-left: 70px;*/
+    overflow: auto;
+}
+
+.author-name{
+    background-color: #337ab7;
+    padding: 0.2rem;
+    border-radius: 2px;
+    color: white;
+}

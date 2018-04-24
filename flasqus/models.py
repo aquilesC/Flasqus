@@ -17,4 +17,8 @@ class Comment(db.Model):
     @property
     def gravatar(self):
         code = md5(self.author_email.encode('ascii')).hexdigest()
-        return 'https://www.gravatar.com/avatar/{}?d=identicon'.format(code)
+        return 'https://www.gravatar.com/avatar/{}?d=identicon&s=60'.format(code)
+
+    @property
+    def written_at(self):
+        return self.creation_date.strftime('%Y-%m-%d %H:%M')

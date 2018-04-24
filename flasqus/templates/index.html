@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/base.css" />
 </head>
 <body>
 <div class="container">
@@ -11,9 +12,8 @@
 <div id="comments"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
-    $('#comments').load('http://aquic.pythonanywhere.com/view_comments/1');
-    console.log('Loaded comments');
-    $('#new_comment').load('http://aquic.pythonanywhere.com/new_comment');
+    $('#comments').load('/view_comments/1');
+    $('#new_comment').load('/new_comment');
 </script>
 
 </div>

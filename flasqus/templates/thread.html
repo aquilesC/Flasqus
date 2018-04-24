@@ -1,13 +1,17 @@
-{% extends 'base.html' %}
-
-{% block content %}
+<div class="comments">
 {% if comments|length > 0 %}
+    <ul class="container">
     {% for comment in comments %}
-        <img src="{{ comment.gravatar }}" />
-    {{ comment.author_name }} - {{ comment.author_email }}<br>
-    <p>{{ comment.message }}</p>
+        <li class="row">
+            <div class="col-md-1 "><img src="{{ comment.gravatar }}" /></div>
+            <div class="col-md-10 ">
+                <p><span class="author-name">{{ comment.author_name }}</span> • {{ comment.written_at }}</p>
+                <p>{{ comment.message|markdown }}</p>
+            </div>
+        </li>
     {% endfor %}
+    </ul>
 {% else %}
     No Comments Yet
 {% endif %}
-{% endblock %}
+</div>

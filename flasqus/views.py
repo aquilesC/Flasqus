@@ -15,7 +15,7 @@ def index():
 @cross_origin()
 @csrf.exempt
 def new_comment():
-    form = CommentForm(csrf_enabled=False)
+    form = CommentForm()
     if form.validate_on_submit():
         comment = Comment(author_name=form.author_name.data,
                           author_email=form.author_email.data,
@@ -24,21 +24,8 @@ def new_comment():
 
         db.session.add(comment)
         db.session.commit()
-        return 'Message received', 200
+        return render_template('message_received.html')
     return render_template('new_comment.html', form=form)
-
-
-@app.route('/add_comment', methods=['POST'])
-def add_comment():
-    print('Here')
-    form = CommentForm()
-    if form.validate_on_submit():
-        print('Validated Form')
-        return 'OK', 200
-    data = request.get_json(cache=False)
-    user = request.form['author_name'];
-    print(user)
-    return 'OK', 200
 
 @app.route('/view_comments/<thread_id>')
 @cross_origin()

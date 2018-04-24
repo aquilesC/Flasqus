@@ -1,27 +1,44 @@
+<div id="TheForm">
     <form name="new_message" id="MessageForm" action="" method="post">
         {{ form.hidden_tag() }}
         <div class="form-group">
-            {{ form.author_name.label }}<br>
-            {{ form.author_name(size=32) }}
-            {% for error in form.author_name.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+            {{ form.author_name.label(class="control-label") }}
+            {% if form.author_name.errors %}
+                {{ form.author_name(class="form-control is-invalid", size=32) }}
+                {% for error in form.author_name.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                {% endfor %}
+            {% else %}
+                {{ form.author_name(class="form-control", size=32) }}
+            {% endif %}
         </div>
-        <p>
-            {{ form.author_email.label }}<br>
-            {{ form.author_email(size=32) }}
-            {% for error in form.author_email.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.message }}
-        </p>
+        <div class="form-group">
+            {{ form.author_email.label(class="control-label") }}
+            {% if form.author_email.errors %}
+                {{ form.author_name(class="form-control is-invalid", size=32) }}
+                {% for error in form.author_email.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                {% endfor %}
+            {% else %}
+                {{ form.author_email(class="form-control", size=32) }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.message.label(class="control-label") }}
+            {% if form.message.errors %}
+                {{ form.message(class="form-control is-invalid") }}
+                {% for error in form.message.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                {% endfor %}
+            {% else %}
+                {{ form.message(class="form-control") }}
+            {% endif %}
+        </div>
         <p>{{ form.sign_up_newsletter() }} {{ form.sign_up_newsletter.label }}</p>
-{#        {{ form.recaptcha }}#}
-        <p><input id="submit" name="submit" type="submit" value="Send" /></p>
-</form>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        {{ form.recaptcha }}
+        <p><input id="submit" name="submit" type="submit" value="Send" class="btn btn-primary"/></p>
+    </form>
+</div>
 <script>
     $(document).ready(function() {
         $('form').submit(function (e) {
@@ -31,7 +48,7 @@
                 url: url,
                 data: $('form').serialize(), // serializes the form's elements.
                 success: function (data) {
-                    console.log(data)  // display the returned data in the console.
+                    $('#TheForm').html(data);
                 }
             });
             e.preventDefault(); // block the traditional submission of the form.
