@@ -1,5 +1,6 @@
 from flask import render_template, request
 from sqlalchemy import desc
+from flask_cors import CORS, cross_origin
 
 from flasqus import app, db
 from .forms import CommentForm
@@ -11,6 +12,7 @@ def index():
 
 
 @app.route('/new_comment', methods=['GET', 'POST'])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def new_comment():
     form = CommentForm()
     if form.validate_on_submit():
