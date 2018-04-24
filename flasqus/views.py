@@ -1,6 +1,6 @@
 from flask import render_template, request
 from sqlalchemy import desc
-from flask_cors import CORS, cross_origin
+from flask_cors import cross_origin
 
 from flasqus import app, db
 from .forms import CommentForm
@@ -41,6 +41,7 @@ def add_comment():
     return 'OK', 200
 
 @app.route('/view_comments/<thread_id>')
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def view_comment(thread_id):
     comments = Comment.query.filter_by(thread_id=thread_id)
     return render_template('thread.html', comments=comments)
