@@ -12,7 +12,7 @@ def index():
 
 
 @app.route('/new_comment', methods=['GET', 'POST'])
-@cross_origin(origin='*', headers=['Content-Type','Authorization'])
+@cross_origin()
 def new_comment():
     form = CommentForm()
     if form.validate_on_submit():
@@ -40,7 +40,7 @@ def add_comment():
     return 'OK', 200
 
 @app.route('/view_comments/<thread_id>')
-@cross_origin(origin='*',headers=['Content-Type','Authorization'], methods=['GET'])
+@cross_origin()
 def view_comment(thread_id):
     comments = Comment.query.filter_by(thread_id=thread_id).all()
     return render_template('thread.html', comments=comments)
