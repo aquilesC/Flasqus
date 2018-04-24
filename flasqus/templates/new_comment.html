@@ -22,35 +22,27 @@
         <p><input id="submit" name="submit" type="button" value="Send" onclick="sendform()"/></p>
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script type="text/javascript">
-    var csrf_token =  $('#csrf_token').attr('content');
-
-    $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-            if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
-                xhr.setRequestHeader("X-CSRFToken", csrf_token);
-            }
-        }
-    });
-</script>
-
 <script>
-function sendform() {
-    $('#submit').on('click', function () {
-        console.log('Clicking button');
-        console.log($('input#author_name').val());
-        console.log($('#MessageForm').serialize());
-        // send ajax
-        $.ajax({
-            url: "http://aquic.pythonanywhere.com/new_comment", // url where to submit the request
-            type: "POST", // type of action POST || GET
-            data: $('#MessageForm').serialize(), // post data || get data
-            success: function (result) {
-                $('#new_comment').html(result);
-                console.log('Success!');
-            }
+    $(document).ready(function() {
+        $('form').submit(function (e) {
+            var url = "http://aquic.pythonanywhere.com/new_comment"; // send the form data here.
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: $('form').serialize(), // serializes the form's elements.
+                success: function (data) {
+                    console.log(data)  // display the returned data in the console.
+                }
+            });
+            e.preventDefault(); // block the traditional submission of the form.
         });
-        return false;
+        // Inject our CSRF token into our AJAX request.
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", "{{ form.csrf_token._value() }}")
+                }
+            }
+        })
     });
-};
 </script>
